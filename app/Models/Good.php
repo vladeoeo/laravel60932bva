@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Good extends Model
 {
     protected $primaryKey = 'product_id';
-    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -25,8 +24,20 @@ class Good extends Model
     // Отключаем автоматические created_at и updated_at
     public $timestamps = false;
 
+    use HasFactory;
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(
+            Order::class,     // с какой моделью связываемся
+            'order_items',    // таблица-связка
+            'product_id',     // внешний ключ текущей модели (Good)
+            'order_id'        // внешний ключ связанной модели (Order)
+        );
+    }
+
 }

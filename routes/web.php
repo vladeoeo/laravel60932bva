@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\GoodController;
+use \App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,6 @@ Route::post('/good', [GoodController::class, 'store']);
 Route::get('/good/edit/{id}',[GoodController::class,'edit']);
 Route::post('/good/update/{id}', [GoodController::class, 'update']);
 Route::get('/good/destroy/{id}', [GoodController::class, 'destroy']);
+
+//Заказы
+Route::get('/order/{id}',[OrderController::class,'show']);
