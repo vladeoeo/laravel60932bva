@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Model
+
+
+class User extends Authenticatable
 {
     use HasFactory;
-    public function goods():HasMany
+
+    public $timestamps = false;
+
+    public function orders()
     {
-        return $this->hasMany(Order::class,'order_id');
+        return $this->hasMany(Order::class);
     }
 }

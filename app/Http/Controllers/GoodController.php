@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Good;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class GoodController extends Controller
@@ -11,10 +12,11 @@ class GoodController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $perpage = $request->perpage ?? 2;
         return view('goods',[
-            'goods'=>Good::all()
+            'goods'=>Good::paginate($perpage)->withQueryString()
         ]);
     }
 
@@ -105,7 +107,13 @@ class GoodController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!Gate::allows('actions-good',Good::all()->where('product_id',$id)->first())){
+            return redirect('/good')->withErrors([
+                'error'=>'У вас нет разрешения на удаление товара номер '.$id]);
+        }
         Good::destroy($id);
-        return redirect("/good");
+        return redirect('/good')->withErrors([
+            'succes'=>'Успешно удален товар №'.$id
+        ]);
     }
 }

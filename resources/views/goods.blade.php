@@ -1,31 +1,34 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-    <meta charset="UTF-8">
-    <title>609-32</title>
-</head>
-<body>
-    <h2>Список товаров</h2>
-    <table border="1">
-        <thead>
-            <td>id</td>
-            <td>Наименование</td>
-            <td>Бренд</td>
-            <td>Цена</td>
-        </thead>
-        @foreach($goods as $good)
-            <tr>
-                <td>{{$good->product_id}}</td>
-                <td>{{$good->name}}</td>
-                <td>{{$good->brand}}</td>
-                <td>{{$good->price}}</td>
-                <td>{{$good->category->name}}</td>
-                <td>
-                    <a href="{{url('good/destroy/'.$good->product_id)}}">Удалить</a>
-                    <a href="{{url('good/edit/'.$good->product_id)}}">Редактировать</a>
-                </td>
-            </tr>
-        @endforeach
-    </table>
-</body>
-</html>
+@extends("layout")
+@section('content')
+    <div class="container">
+        <h2>Список товаров</h2>
+        <div class="wrapper">
+            <table border="1" style="display: flex; flex-direction: column; justify-content: space-between">
+                <thead>
+                <td style="width: 184px">id</td>
+                <td style="width: 184px">Наименование</td>
+                <td style="width: 184px">Бренд</td>
+                <td style="width: 184px">Цена</td>
+                <td style="width: 184px">Категория</td>
+                </thead>
+                @foreach($goods as $good)
+                    <tr>
+                        <td style="width: 190px; border-top:3px solid #EEE">{{$good->product_id}}</td>
+                        <td style="width: 190px; border-top:3px solid #EEE">{{$good->name}}</td>
+                        <td style="width: 190px; border-top:3px solid #EEE">{{$good->brand}}</td>
+                        <td style="width: 190px; border-top:3px solid #EEE">{{$good->price}}</td>
+                        <td style="width: 190px; border-top:3px solid #EEE">{{$good->category->name}}</td>
+                        <td style="width: 190px; border-top:3px solid #EEE">
+                            <div class="wrapper2" style="display: flex;flex-direction: column;gap: 5px">
+                                <a style="text-decoration: none" href="{{url('good/destroy/'.$good->product_id)}}">Удалить</a>
+                                <a style="text-decoration: none" href="{{url('good/edit/'.$good->product_id)}}">Редактировать</a>
+                                <a style="text-decoration: none" href="{{url('good/review/'.$good->product_id)}}">Отзывы</a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+            {{$goods->links()}}
+        </div>
+    </div>
+@endsection

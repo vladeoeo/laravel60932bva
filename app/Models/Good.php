@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Good extends Model
 {
     protected $primaryKey = 'product_id';
+
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -22,7 +25,6 @@ class Good extends Model
     ];
 
     // Отключаем автоматические created_at и updated_at
-    public $timestamps = false;
 
     use HasFactory;
     public function category()
@@ -39,5 +41,8 @@ class Good extends Model
             'order_id'        // внешний ключ связанной модели (Order)
         );
     }
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id', 'product_id');
+    }
 }

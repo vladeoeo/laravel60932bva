@@ -11,10 +11,7 @@ class Order extends Model
     use HasFactory;
 
     protected $primaryKey = 'order_id';
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+
     public function goods()
     {
         return $this->belongsToMany(
@@ -25,4 +22,13 @@ class Order extends Model
         )->withPivot(['price_at_moment','quantity']);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function order_items()
+    {
+        return $this->hasMany(Order_Item::class,'order_id');
+    }
 }

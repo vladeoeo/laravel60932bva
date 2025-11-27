@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer("stock_quantity");
             $table->string("brand");
             $table->string("img_url");
+            $table->timestamps();      // добавит created_at и updated_at
+            $table->softDeletes();     // если нужен soft delete
         });
     }
 
