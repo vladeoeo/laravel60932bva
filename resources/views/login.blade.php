@@ -28,7 +28,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Заказы</a>
+                        <a class="nav-link" href="{{url('order')}}">Заказы</a>
                     </li>
                 </ul>
                 @if(!Auth::user())
@@ -39,11 +39,11 @@
                         <button class="btn btn-outline-succes" type="submit">Войти</button>
                     </form>
                 @else
-                    <ul class="navbar-nav">
-                        <a class="nav-link active" href="#"><i class="fa fa-user" style="font-size:20px;color:white;"></i>
+                    <ul class="nav_wrapper">
+                        <a class="nav_wrapper-btn" href="#"><i class="fa fa-user" style="font-size:20px;color:white;"></i>
                             <span>  </span>{{Auth::user()->first_name}}
                         </a>
-                        <a class="btn btn-outline-succes my-2 my-sm-0" href="{{url('logout')}}">Выйти</a>
+                        <a class="nav_wrapper-btn" href="{{url('logout')}}">Выйти</a>
                     </ul>
                 @endif
             </div>

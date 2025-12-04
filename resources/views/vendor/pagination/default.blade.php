@@ -43,14 +43,14 @@
             @endif
         </ul>
     </nav>
-    Элементов на странице:
+    <p class="pag_zag">Элементов на странице:</p>
     <form method="get" action="{{url('good')}}">
-        <select name="perpage">
+        <select class="select_pag" name="perpage">
             <option value="2" @if($paginator->PerPage() == 2) selected @endif>2</option>
             <option value="3" @if($paginator->PerPage() == 3) selected @endif>3</option>
             <option value="4" @if($paginator->PerPage() == 4) selected @endif>4</option>
             <option value="5" @if($paginator->PerPage() == 5) selected @endif>5</option>
         </select>
-        <input type="submit" value="Изменить">
+        <input class="btn_pag" type="submit" value="Изменить">
     </form>
 @endif

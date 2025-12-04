@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategoryController;
 use \App\Http\Controllers\GoodController;
 use \App\Http\Controllers\OrderController;
+use \App\Http\Controllers\Order_itemController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ReviewController;
 
@@ -26,6 +27,7 @@ Route::post('/good/update/{id}', [GoodController::class, 'update'])->middleware(
 Route::get('/good/destroy/{id}', [GoodController::class, 'destroy'])->middleware('auth');
 
 //Заказы
+Route::get('/order',[OrderController::class,'index']);
 Route::get('/order/{id}',[OrderController::class,'show']);
 
 //Аутенфикация

@@ -35,7 +35,7 @@ class ReviewController extends Controller
     {
         $good = Good::all()->where("product_id",$id)->first();
         if (Gate::denies('leave-review', $good)) {
-            return redirect('error')->with('message', 'Вы не можете оставить отзыв на товар, который не покупали.');
+            return redirect('/good/review/'.$id)->withErrors(['error'=>'Вы не покупали этот товар']);
         }
 
         $validated = $request->validate([

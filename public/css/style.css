@@ -1,0 +1,260 @@
+.container-fluid{
+    width: 96vw;
+}
+
+.table{
+    display: flex;
+    flex-direction: column;
+    border-top: 3px solid lightgray;
+    border-left: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+}
+
+.table_rev{
+    display: flex;
+    flex-direction: column;
+    border-top: 3px solid lightgray;
+    border-left: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+    margin-bottom: 20px;
+}
+
+.table_zak{
+    display: flex;
+    flex-direction: column;
+    border-top: 3px solid lightgray;
+    border-left: 3px solid lightgray;
+    border-right: 3px solid lightgray;
+    margin-bottom: 20px;
+}
+
+.table_zag{
+    display: flex;
+    background-color: #0a0a0a;
+    align-items: center;
+    height: 60px;
+    border-bottom: 3px solid lightgray;
+}
+
+.table_rev_zag{
+    display: flex;
+    background-color: #0a0a0a;
+    align-items: center;
+    height: 60px;
+    border-bottom: 3px solid lightgray;
+}
+
+.table_zag h2{
+    font-size: 20px;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.table_rev_zag h2{
+    font-size: 20px;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.id_rev{
+    width: 15vw;
+}
+
+.name_rev{
+    width: 25vw;
+}
+
+.otz_rev{
+    width: 60vw;
+}
+
+.id_zak{
+    width: 5vw;
+}
+
+.name_zak{
+    width: 35vw;
+}
+
+.brand_zak{
+    width: 10vw;
+}
+
+.price_zak{
+    width: 20vw;
+}
+
+.price_zak{
+    width: 20vw;
+}
+
+.category_zak{
+    width: 20vw;
+}
+
+.btn_zak{
+    width: 10vw;
+}
+
+.id_zag{
+    width: 5vw;
+}
+
+.name_zag{
+    width: 45vw;
+}
+
+.brand_zag{
+    width: 10vw;
+}
+
+.price_zag{
+    width: 20vw;
+}
+
+.price_zag{
+    width: 20vw;
+}
+
+.category_zag{
+    width: 20vw;
+}
+
+.id{
+    width: 5vw;
+}
+
+.name{
+    width: 25vw;
+}
+
+.brand{
+    width: 25vw;
+}
+
+.price{
+    width: 10vw;
+}
+
+.category{
+    width: 20vw;
+}
+
+.destv{
+    width: 15vw;
+}
+
+.table_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.table_rev_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.table_row{
+    display: flex;
+    border-bottom: 3px solid lightgray;
+}
+
+.table_rev_info_row{
+    display: flex;
+    border-bottom: 3px solid lightgray;
+}
+
+.table_row h3{
+    font-size: 18px;
+    text-align: center;
+    border-right: 3px solid lightgray;
+    margin: 0;
+}
+
+.table_row a{
+    font-size: 18px;
+    text-align: center;
+    border-right: 3px solid lightgray;
+    margin: 0;
+    text-decoration: none;
+}
+
+.table_rev_info_row h3{
+    font-size: 18px;
+    text-align: center;
+    border-right: 3px solid lightgray;
+    margin: 0;
+}
+
+.pag_zag{
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn_pag{
+    border:none;
+    width: 200px;
+    height: 50px;
+    background-color: #0a0a0a;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.select_pag{
+    background-color: #0a0a0a;
+    color: white;
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.btn_rev{
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background-color: #0a0a0a;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.h2_rev_cr{
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.nav_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+}
+
+.nav_wrapper-btn{
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+.id_order_items{
+    width: 10vw;
+}
+
+.name_order_items{
+    width: 50vw;
+}
+
+.brand_order_items{
+    width: 20vw;
+}
+
+.price_order_items{
+    width: 20vw;
+}

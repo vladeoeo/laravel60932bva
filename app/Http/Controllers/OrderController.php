@@ -13,7 +13,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $perpage = $request->perpage ?? 2;
+        return view('orders',[
+            'orders'=>Order::paginate($perpage)->withQueryString()
+        ]);
     }
 
     /**
@@ -40,7 +43,7 @@ class OrderController extends Controller
         $order = Order::with('goods')->find($id);
 
         $total = DB::table('order_items')
-            ->where('order_id', 3)
+            ->where('order_id', $id) // используем $id, а не 3
             ->selectRaw('SUM(price_at_moment * quantity) as total')
             ->first();
 
