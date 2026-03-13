@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Review extends Model {
     protected $table = 'reviews';
 
+    protected $primaryKey = 'review_id';
+
     public $timestamps = false;
 
     protected $fillable = [
