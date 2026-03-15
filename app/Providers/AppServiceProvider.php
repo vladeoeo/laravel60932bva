@@ -40,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
             return $exists;
         });
 
+        Gate::define('create-good',function (User $user){
+            return true;
+        });
 
     }
 }
