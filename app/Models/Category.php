@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 
     protected $primaryKey = 'category_id';
     use HasFactory;

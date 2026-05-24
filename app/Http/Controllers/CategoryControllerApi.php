@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Good;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryControllerApi extends Controller
 {
@@ -17,14 +20,14 @@ class CategoryControllerApi extends Controller
 
         return response(
             Category::limit($perpage)
-                ->offset($perpage * $page)
+                ->offset($perpage * $page)->where('name','LIKE','%' . $request->search . '%')
                 ->get()
         );
     }
 
-    public function total()
+    public function total(Request $request)
     {
-        return response(Category::all()->count());
+        return response(Category::where('name','LIKE','%' . $request->search . '%')->count());
     }
 
     /**
@@ -40,7 +43,23 @@ class CategoryControllerApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!Gate::allows('create-good')){
+            return response()->json([
+                'code' => 1,
+                'message' => 'У вас нет прав на добавление категории',
+            ]);
+        }
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'description'=>'required|max:255',
+        ]);
+        $category = new Category($validated);
+        $category->save();
+        return response()->json([
+            'code'=>0,
+            'message' => 'Категория успешно добавлен',
+
+        ]);
     }
 
     /**
@@ -48,7 +67,25 @@ class CategoryControllerApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name'=>'required|max:255|unique:categories,name,' . $id . ',category_id',
+            'description'=>'required|max:255',
+        ]);
+        try{
+            $category = Category::findOrFail($id);
+            $category->name  =$validated['name'];
+            $category->description  =$validated['description'];
+            $category->save();
+            return response()->json([
+                'code'=>0,
+                'message'=>'Категория успешно обновлена',
+            ]);
+        } catch (\Exception $e){
+            return response()->json([
+                'code' => 2,
+                'message' => 'Ошибка при обновлении ' . $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
@@ -56,6 +93,14 @@ class CategoryControllerApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        if ($category->goods()->count()){
+            return response()->json(['code' => 1, 'error' => 'Нельзя удалить непустую категорию']);
+        }
+        $deleted = Category::destroy($id);
+        if ($deleted == 0){
+            return response()->json(['code' => 1, 'error' => 'Категория не найдена']);
+        }
+        return response()->json(['code' => 0, 'message' => 'Категория успешно удалена']);
     }
 }
